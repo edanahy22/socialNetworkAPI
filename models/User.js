@@ -37,6 +37,10 @@ const userSchema = new Schema(
   }
 );
 
+userSchema.virtual('friendCount').get(function() {
+  return friends.length;
+});
+
 const Course = model('course', courseSchema);
 
 module.exports = Course;
