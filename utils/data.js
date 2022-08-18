@@ -1,118 +1,45 @@
-const names = [
-  'Aaran',
-  'Aaren',
-  'Aarez',
-  'Aarman',
-  'Aaron',
-  'Aaron-James',
-  'Aarron',
-  'Aaryan',
-  'Aaryn',
-  'Aayan',
-  'Aazaan',
-  'Abaan',
-  'Abbas',
-  'Abdallah',
-  'Abdalroof',
-  'Abdihakim',
-  'Abdirahman',
-  'Abdisalam',
-  'Abdul',
-  'Abdul-Aziz',
-  'Abdulbasir',
-  'Abdulkadir',
-  'Abdulkarem',
-  'Smith',
-  'Jones',
-  'Coollastname',
-  'enter_name_here',
-  'Ze',
-  'Zechariah',
-  'Zeek',
-  'Zeeshan',
-  'Zeid',
-  'Zein',
-  'Zen',
-  'Zendel',
-  'Zenith',
-  'Zennon',
-  'Zeph',
-  'Zerah',
-  'Zhen',
-  'Zhi',
-  'Zhong',
-  'Zhuo',
-  'Zi',
-  'Zidane',
-  'Zijie',
-  'Zinedine',
-  'Zion',
-  'Zishan',
-  'Ziya',
-  'Ziyaan',
-  'Zohaib',
-  'Zohair',
-  'Zoubaeir',
-  'Zubair',
-  'Zubayr',
-  'Zuriel',
-  'Xander',
-  'Jared',
-  'Courtney',
-  'Gillian',
-  'Clark',
-  'Jared',
-  'Grace',
-  'Kelsey',
-  'Tamar',
-  'Alex',
-  'Mark',
-  'Tamar',
-  'Farish',
-  'Sarah',
-  'Nathaniel',
-  'Parker',
+const usernames = [
+  'davidrose',
+  'alexisrose',
+  'steviebud',
+  'johnnyrose',
+  'moirarose'
 ];
 
-const appDescriptions = [
-  'Decision Tracker',
-  'Find My Phone',
-  'Learn Piano',
-  'Starbase Defender',
-  'Tower Defense',
-  'Monopoly Money Manager',
-  'Movie trailers',
-  'Hello world',
-  'Stupid Social Media App',
-  'Notes',
-  'Messages',
-  'Email',
-  'Compass',
-  'Firefox',
-  'Running app',
-  'Cooking app',
-  'Poker',
-  'Deliveries',
+const emails = [
+  'drose@gmail.com',
+  'alexisrose@gmail.com',
+  'sbud@gmail.com',
+  'johnnyrose@gmail.com',
+  'moira@gmail.com'
 ];
 
-// Get a random item given an array
-const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
+const thoughts = [
+  'Ew, David',
+  'Fold in the cheese',
+  'I am trying very hard not to connect with people right now',
+  'Very uninterested in that opinion',
+  'Tweet us on Facebook'
+]
 
-// Gets a random full name
-const getRandomName = () =>
-  `${getRandomArrItem(names)} ${getRandomArrItem(names)}`;
+const users= [];
 
-// Function to generate random assignments that we can add to student object.
-const getRandomAssignments = (int) => {
-  const results = [];
-  for (let i = 0; i < int; i++) {
-    results.push({
-      assignmentName: getRandomArrItem(appDescriptions),
-      score: Math.floor(Math.random() * (99 - 70 + 1) + 70),
+const getRandomUser = () => {
+   
+  for (let i = 0; i < 5; i++) {
+    const username = usernames[i];
+    const thought =  thoughts[i];
+    const email = emails[i];
+
+    users.push({
+      username,
+      email,
+      thought,
     });
   }
-  return results;
-};
+  return users;
+}
+
 
 // Export the functions for use in seed.js
-module.exports = { getRandomName, getRandomAssignments };
+module.exports = { getRandomUser };
