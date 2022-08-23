@@ -3,6 +3,7 @@ const {
   getThoughts,
   getSingleThought,
   createThought,
+  updateThought,
   deleteThought,
   createReaction,
   deleteReaction
@@ -12,7 +13,7 @@ const {
 router.route('/').get(getThoughts).post(createThought);
 
 // /api/students/:studentId
-router.route('/:thoughtId').get(getSingleThought).delete(deleteThought);
+router.route('/:thoughtId').get(getSingleThought).put(updateThought).delete(deleteThought);
 
 // /api/students/:studentId/assignments
 router.route('/:thoughtId/reactions').post(createReaction);

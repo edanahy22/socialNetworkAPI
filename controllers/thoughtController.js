@@ -70,11 +70,12 @@ module.exports = {
         !thought
           ? res
               .status(404)
-              .json({ message: 'No thought found with that ID :(' })
-          : res.json(student)
+              .json({ message: 'No thought found with that ID' })
+          : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
   },
+
  // delete a reaction
   deleteReaction(req, res) {
     Thought.findOneAndUpdate(
@@ -82,12 +83,12 @@ module.exports = {
       { $pull: { reaction: { reactionId: req.params.reactionId } } },
       { runValidators: true, new: true }
     )
-      .then((thought) =>
+      .then((reaction) =>
         !thought
           ? res
               .status(404)
-              .json({ message: 'No thought found with that ID :(' })
-          : res.json(thought)
+              .json({ message: 'No reaction found with that ID :(' })
+          : res.json(reaction)
       )
       .catch((err) => res.status(500).json(err));
   }
