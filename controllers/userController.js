@@ -1,11 +1,11 @@
 const { ObjectId } = require('mongoose').Types;
 const { Thought, User } = require('../models');
 
-// // Aggregate function to get the number of students overall
-// const headCount = async () =>
-//   Student.aggregate()
-//     .count('studentCount')
-//     .then((numberOfStudents) => numberOfStudents);
+// Aggregate function to get the number of students overall
+// const friendCount = async () =>
+//   User.aggregate()
+//     .count('friendCount')
+//     .then((numberOfFriends) => numberOfFriends);
 
 // // Aggregate function for getting the overall grade using $avg
 // const grade = async (studentId) =>
@@ -74,5 +74,40 @@ module.exports = {
         !user
           ? res.status(404).json({ message: 'No such user exists' })
           : res.json({ message: 'User deleted!' }))
-  }
+  },
+
+    // create a reaction
+    createFriend(req, res) {
+      console.log('You are adding a friend');
+      console.log(req.body);
+      User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $addToSet: { reactions: req.body } },
+        { runValidators: true, new: true }
+      )
+        .then((friend) =>
+          !friend
+            ? res
+                .status(404)
+                .json({ message: 'No thought found with that ID :(' })
+            : res.json(friend)
+        )
+        .catch((err) => res.status(500).json(err));
+    },
+   // delete a reaction
+    deleteFriend(req, res) {
+      User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $pull: { reaction: { userId: req.params.userId } } },
+        { runValidators: true, new: true }
+      )
+        .then((friend) =>
+          !friend
+            ? res
+                .status(404)
+                .json({ message: 'No friend found with that ID :(' })
+            : res.json(friend)
+        )
+        .catch((err) => res.status(500).json(err));
+    }
 }
