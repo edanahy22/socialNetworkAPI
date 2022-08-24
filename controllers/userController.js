@@ -1,12 +1,32 @@
 const { ObjectId } = require('mongoose').Types;
 const { Thought, User } = require('../models');
 
+// Aggregate function to get the number of students overall
+// const friendCount = async () =>
+//   User.aggregate()
+//     .count('friendCount')
+//     .then((numberOfFriends) => numberOfFriends);
+
+// // Aggregate function for getting the overall grade using $avg
+// const grade = async (studentId) =>
+//   Student.aggregate([
+//     // only include the given student by using $match
+//     { $match: { _id: ObjectId(studentId) } },
+//     {
+//       $unwind: '$assignments',
+//     },
+//     {
+//       $group: {
+//         _id: ObjectId(studentId),
+//         overallGrade: { $avg: '$assignments.score' },
+//       },
+//     },
+//   ]);
 
 module.exports = {
   // Get all users
   getUsers(req, res) {
     User.find()
-      
       .select('-__v')
       .then((users) => res.json(users))
       .catch((err) => res.status(500).json(err));
@@ -63,7 +83,7 @@ module.exports = {
       console.log(req.body);
       User.findOneAndUpdate(
         { _id: req.params.userId },
-        { $addToSet: { friends: req.params.userId } },
+        { $addToSet: { friends: req.body } },
         { runValidators: true, new: true }
       )
         .then((friend) =>
@@ -87,7 +107,7 @@ module.exports = {
           !friend
             ? res
                 .status(404)
-                .json({ message: 'No friend found with that ID :(' })
+                .json({ message: 'No friend found with that ID' })
             : res.json({message: 'friend deleted'})
         )
         .catch((err) => res.status(500).json(err));

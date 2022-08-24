@@ -33,7 +33,8 @@ WHEN I test API POST and DELETE routes in Insomnia
 THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list
 ```
 
-[Walk-through Video](https://drive.google.com/file/d/1qJRYx95aOk0yj5nh9jh6DniBlSz7Ag1l/view)
+[Walk-through Video part 1](https://drive.google.com/file/d/1L4q-9fUcNIl7wi4c4Xf4qx1ss2URKrR2/view)
+[Walk-through Video part 2](https://drive.google.com/file/d/1Ynx3OkZVzqgCqnkthmsizsxrrJ_vETfK/view)
 
 ## Development
 This application was developed using javaScript, node, express for routing, MongoDB for the database, and mongoose ODM. 
